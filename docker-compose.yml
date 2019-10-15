@@ -4,18 +4,16 @@ services:
     build: ./boogle-maps
     ports:
       - "9191:9191"
+    depends_on:
+      - eureka
     volumes:
-      - type: "volume"
-        source: maps
+      - type: bind
+        source: ./boogle-maps
         target: /app
   eureka:
     build: ./eureka
     ports:
       - "8761:8761"
-    volumes:
-      - type: "volume"
-        source: eurekaV
-        target: /app
   pricing-service:
     build: ./pricing-service
     depends_on:
@@ -23,10 +21,6 @@ services:
     ports:
       - "8082:8082"
     volumes:
-      - type: "volume"
-        source: pricing
+      - type: bind
+        source: ./pricing-service
         target: /app
-volumes:
-  maps:
-  eurekaV:
-  pricing:
