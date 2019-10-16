@@ -6,6 +6,8 @@ services:
       - "9191:9191"
     depends_on:
       - eureka
+    environment:
+      - EUREKA_URI=http://eureka:8761/eureka/
   eureka:
     build: ./eureka
     ports:
@@ -16,9 +18,13 @@ services:
       - eureka
     ports:
       - "8082:8082"
+    environment:
+      - EUREKA_URI=http://eureka:8761/eureka/
   vehicles-api:
     build: ./vehicles-api
     depends_on:
       - eureka
     ports:
       - "8080:8080"
+    environment:
+      - EUREKA_URI=http://eureka:8761/eureka/
