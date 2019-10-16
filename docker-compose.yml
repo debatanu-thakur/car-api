@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  booble-maps:
+  boogle-maps:
     build: ./boogle-maps
     ports:
       - "9191:9191"
