@@ -6,10 +6,6 @@ services:
       - "9191:9191"
     depends_on:
       - eureka
-    volumes:
-      - type: bind
-        source: ./boogle-maps
-        target: /app
   eureka:
     build: ./eureka
     ports:
@@ -20,7 +16,9 @@ services:
       - eureka
     ports:
       - "8082:8082"
-    volumes:
-      - type: bind
-        source: ./pricing-service
-        target: /app
+  vehicles-api:
+    build: ./vehicles-api
+    depends_on:
+      - eureka
+    ports:
+      - "8080:8080"
